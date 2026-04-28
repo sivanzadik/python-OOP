@@ -1,0 +1,759 @@
+Task 1 - Your First Class
+Create a Person class
+
+Attributes: name, age, city
+Method: introduce() → prints "Hi, I'm John, 25 years old from Cairo"
+p = Person("John", 25, "Cairo")
+p.introduce()
+
+Task 2 - Default Attributes
+Create a Car class
+
+Attributes: brand, model, year, color (default "white"), speed (always starts at 0)
+Method: get_info() → prints all car details
+car1 = Car("Toyota", "Corolla", 2020)
+car2 = Car("BMW", "M3", 2023, "black")
+car1.get_info()  # color will be white
+car2.get_info()  # color will be black
+
+Task 3 - Modifying Attributes
+Create a Player class
+
+Attributes: username, score (starts at 0), lives (starts at 3)
+Methods:
+add_score(points) → increases score
+lose_life() → decreases lives
+show_status() → prints username, score, and lives
+p = Player("Dani")
+p.add_score(10)
+p.lose_life()
+p.show_status()  # Dani | Score: 10 | Lives: 2
+
+Task 4 - Validation in __init__
+Create a Product class
+
+Attributes: name, price, quantity
+In __init__, validate:
+price must be greater than 0, otherwise set it to 0.01
+quantity must be 0 or more, otherwise set it to 0
+Method: get_total_value() → returns price * quantity
+p1 = Product("Laptop", 999, 5)
+p2 = Product("Broken", -50, -3)  # should fix bad values
+print(p1.get_total_value())  # 4995
+
+
+
+
+Task 5 - Multiple Instances
+Create a Student class
+
+Attributes: name, student_id, major, gpa (default 0.0)
+Method: update_gpa(new_gpa) → updates the gpa
+Method: show_profile() → prints all info neatly
+Create 4 different students and show their profiles
+
+s1 = Student("Alice", "S001", "CS")
+s2 = Student("Bob", "S002", "Math")
+# ...
+
+Task 6 - Instance with a List Attribute
+Create a Bag class
+
+Attributes: owner, color, items (empty list, initialized in __init__)
+Methods:
+add_item(item) → adds to the list
+remove_item(item) → removes if it exists, print error if not
+show_contents() → prints everything inside the bag
+bag = Bag("Sara", "red")
+bag.add_item("book")
+bag.add_item("water bottle")
+bag.remove_item("keys")  # "keys not found in bag"
+bag.show_contents()
+
+Task 7 - Phone Class Object
+Create a Phone class
+
+Attributes: brand, model, storage_gb, battery (starts at 100), is_on (starts at False)
+Methods:
+power_on() → sets is_on to True, prints "Phone is on"
+power_off() → sets is_on to False, prints "Phone is off"
+use_battery(amount) → reduces battery, never goes below 0
+charge(amount) → increases battery, never goes above 100
+show_status() → prints all current info
+phone = Phone("Samsung", "S24", 256)
+phone.power_on()
+phone.use_battery(30)
+phone.charge(10)
+phone.show_status()
+
+
+
+
+
+
+
+Task 8 - Basic Methods
+Create a Rectangle class
+
+Attributes: width, height
+Methods:
+area() → returns width * height
+perimeter() → returns 2 * (width + height)
+describe() → prints "Rectangle: 5 x 3"
+r = Rectangle(5, 3)
+print(r.area())       # 15
+print(r.perimeter())  # 16
+r.describe()          # Rectangle: 5 x 3
+
+Task 9 - Methods That Change State
+Create a TrafficLight class
+
+Attributes: color (starts at "red")
+Methods:
+next() → cycles red → green → yellow → red
+show() → prints current color
+light = TrafficLight()
+light.show()   # red
+light.next()
+light.show()   # green
+light.next()
+light.show()   # yellow
+light.next()
+light.show()   # red
+
+
+Task 10 - Methods That Call Other Methods
+Create a Circle class
+
+Attributes: radius
+Methods:
+diameter() → returns radius * 2
+area() → uses diameter() inside it
+summary() → calls and prints all three values
+c = Circle(5)
+c.summary()
+# Radius: 5
+# Diameter: 10
+# Area: 78.53
+
+A method can call another method using self.method()
+
+
+
+Task 11 - Methods With Logic
+Create a Thermostat class
+
+Attributes: temperature (in Celsius)
+Methods:
+to_fahrenheit() → returns (temp * 9/5) + 32
+to_kelvin() → returns temp + 273.15
+set_temperature(new_temp) → updates temp, reject if below -273.15
+status() → prints "Freezing" below 0, "Normal" 0–100, "Boiling" above 100
+t = Thermostat(25)
+print(t.to_fahrenheit())  # 77.0
+print(t.to_kelvin())      # 298.15
+t.set_temperature(-300)   # rejected
+t.status()                # Normal
+
+Task 12 - Methods on a List
+Create a Playlist class
+
+Attributes: name, songs (empty list)
+Methods:
+add_song(song) → adds to list
+remove_song(song) → removes if exists, print error if not
+count() → returns number of songs
+show() → prints all songs numbered
+clear() → empties the playlist
+p = Playlist("Chill Mix")
+p.add_song("Song A")
+p.add_song("Song B")
+p.add_song("Song C")
+p.show()
+# 1. Song A
+# 2. Song B
+# 3. Song C
+print(p.count())    # 3
+p.remove_song("Song B")
+p.show()
+# 1. Song A
+# 2. Song C
+
+Task 13 - Methods That Return vs Print
+Create a Calculator class
+
+Attributes: result (starts at 0)
+Methods:
+add(n) → adds to result, returns self
+subtract(n) → subtracts, returns self
+multiply(n) → multiplies, returns self
+reset() → sets result back to 0, returns self
+show() → prints current result, returns self
+calc = Calculator()
+calc.add(10).multiply(3).subtract(5).show()  # 25
+calc.reset().add(7).show()                   # 7
+
+Returning self from methods allows chaining -calling multiple methods in one line
+
+Task 14 -Full Object Behavior
+Create an ATM class
+
+Attributes: owner, balance, pin, is_locked (starts False), failed_attempts (starts 0), is_logged_in (starts False)
+Methods:
+login(entered_pin) → checks pin, locks after 3 failed attempts
+deposit(amount) → adds to balance (only if logged in)
+withdraw(amount) → removes from balance, reject if not enough funds (only if logged in)
+check_balance() → prints balance (only if logged in)
+logout() → logs out the user
+atm = ATM("Sara", 1000, 1234)
+atm.deposit(500)           # not logged in
+atm.login(0000)            # wrong pin - attempt 1
+atm.login(0000)            # wrong pin - attempt 2
+atm.login(0000)            # wrong pin - attempt 3 - LOCKED
+atm.login(1234)            # account is locked
+
+
+
+Task 15 -  Private Attributes
+Create a Person class
+
+Private attributes: _name, _age
+Methods:
+get_name() → returns name
+get_age() → returns age
+set_age(age) → updates age, reject if below 0 or above 120
+show() → prints both
+p = Person("John", 25)
+p.set_age(30)
+p.set_age(-5)   # rejected
+p.set_age(200)  # rejected
+p.show()        # Name: John | Age: 30
+
+Task 16 - Using @property
+Create a Temperature class
+
+Private attribute: _celsius
+Properties:
+celsius → get and set (reject below -273.15)
+fahrenheit → get only (calculated from celsius)
+kelvin → get only (calculated from celsius)
+t = Temperature(25)
+print(t.celsius)      # 25
+print(t.fahrenheit)   # 77.0
+print(t.kelvin)       # 298.15
+t.celsius = -300      # rejected
+t.celsius = 100
+print(t.fahrenheit)   # 212.0
+
+ @property lets you access a method like an attribute - no ()needed
+
+Task 17 - Protecting Important Data
+Create a BankAccount class
+
+Private attributes: _owner, _balance, _transaction_history (list)
+No direct access to balance — only through methods
+Methods:
+deposit(amount) → adds to balance, logs to history
+withdraw(amount) → rejects if not enough funds, logs to history
+get_balance() → returns balance
+get_history() → prints all transactions
+acc = BankAccount("Sara", 500)
+acc.deposit(200)
+acc.withdraw(100)
+acc.withdraw(1000)    # rejected - not enough funds
+acc.get_balance()     # 600
+acc.get_history()
+# + Deposited 200 | Balance: 700
+# - Withdrew 100  | Balance: 600
+# x Failed withdrawal of 1000
+
+Task 18 - Read Only Attributes
+Create a Student class
+
+Private: _name, _id, _grades (list)
+_id should be read only — set once, never changed
+Properties:
+name → get and set (no empty strings)
+id → get only (no setter)
+average → get only (calculated)
+grade_letter → get only → A 90+, B 80+, C 70+, D 60+, F below 60
+Method: add_grade(grade) → only accepts 0–100
+s = Student("Alice", "S001")
+s.add_grade(95)
+s.add_grade(85)
+s.add_grade(78)
+print(s.average)       # 86.0
+print(s.grade_letter)  # B
+print(s.id)            # S001
+s.id = "S999"          # AttributeError - read only
+
+Task 19 - Full Encapsulation
+Create a PasswordManager class
+
+Private: _username, _password, _login_attempts (starts 0), _is_locked (starts False)
+Password must be stored as a hash (use hash() built-in)
+Properties:
+username → get only
+is_locked → get only
+Methods:
+login(entered_password) → hashes input and compares, locks after 3 failed attempts
+change_password(old_password, new_password) → verify old first, new must be 8+ characters
+reset() → unlocks account and resets attempts
+pm = PasswordManager("john", "secure123")
+pm.login("wrongpass")   # failed - attempt 1
+pm.login("wrongpass")   # failed - attempt 2
+pm.login("wrongpass")   # failed - attempt 3 - LOCKED
+pm.login("secure123")   # account is locked
+pm.reset()
+pm.login("secure123")   # Welcome john!
+pm.change_password("secure123", "abc")       # too short
+pm.change_password("secure123", "newpass99") # password changed
+
+Task 20 -Introduction to Dunder Methods
+Create a Book class
+
+Attributes: title, author, pages, rating
+Implement:
+__str__ → "The Alchemist by Paulo Coelho | 208 pages"
+__repr__ → "Book('The Alchemist', 'Paulo Coelho', 208, 4.8)"
+__eq__ → two books are equal if same title and author
+__len__ → returns number of pages
+b1 = Book("The Alchemist", "Paulo Coelho", 208, 4.8)
+b2 = Book("The Alchemist", "Paulo Coelho", 350, 4.5)
+b3 = Book("Dune", "Frank Herbert", 412, 4.9)
+
+print(b1)           # The Alchemist by Paulo Coelho | 208 pages
+print(repr(b1))     # Book('The Alchemist', 'Paulo Coelho', 208, 4.8)
+print(len(b1))      # 208
+print(b1 == b2)     # True  — same title + author
+print(b1 == b3)     # False
+
+
+
+Task 21 - Dunder Methods With Collections
+Create a Cart class
+
+Attributes: owner, items (list of dicts with name and price)
+Implement:
+__str__ → "Sara's Cart — 3 items"
+__len__ → returns number of items
+__contains__ → checks if item name is in cart
+__add__ → merges two carts into a new one
+Method: add_item(name, price)
+cart1 = Cart("Sara")
+cart1.add_item("Laptop", 999)
+cart1.add_item("Mouse", 29)
+
+cart2 = Cart("Sara")
+cart2.add_item("Keyboard", 79)
+
+print(cart1)                  # Sara's Cart — 2 items
+print(len(cart1))             # 2
+print("Laptop" in cart1)      # True
+print("Monitor" in cart1)     # False
+
+merged = cart1 + cart2
+print(len(merged))            # 3
+
+
+Task 22 - @classmethod and @staticmethod
+Create a Person class
+
+Instance attributes: name, age
+Class attribute: count (tracks total persons created)
+@classmethod get_count() → returns how many persons exist
+@classmethod from_birth_year(name, year) → creates a Person using birth year instead of age
+@staticmethod is_valid_age(age) → returns True if age is between 0 and 120
+@staticmethod is_valid_name(name) → returns True if name is not empty and has no numbers
+p1 = Person("Alice", 25)
+p2 = Person("Bob", 30)
+p3 = Person.from_birth_year("Sara", 2000)
+
+print(Person.get_count())           # 3
+print(p3.age)                       # 26
+print(Person.is_valid_age(25))      # True
+print(Person.is_valid_age(200))     # False
+print(Person.is_valid_name("Ali"))  # True
+print(Person.is_valid_name("Al1"))  # False
+
+@classmethod works with the class itself — @staticmethod is just a utility function that lives inside the class
+
+Task 23 - Real World Class & Static Methods
+Create a Temperature class
+
+Instance attribute: celsius
+@classmethod from_fahrenheit(value) → creates instance from Fahrenheit
+@classmethod from_kelvin(value) → creates instance from Kelvin
+@staticmethod is_valid_celsius(value) → returns True if above -273.15
+@staticmethod compare(temp1, temp2) → prints which is hotter
+Method: show() → prints celsius, fahrenheit, and kelvin
+t1 = Temperature(100)
+t2 = Temperature.from_fahrenheit(32)
+t3 = Temperature.from_kelvin(300)
+
+t1.show()   # Celsius: 100 | Fahrenheit: 212.0 | Kelvin: 373.15
+t2.show()   # Celsius: 0.0 | Fahrenheit: 32 | Kelvin: 273.15
+t3.show()   # Celsius: 26.85 | Fahrenheit: 80.33 | Kelvin: 300
+
+print(Temperature.is_valid_celsius(-300))  # False
+Temperature.compare(t1, t3)               # 100°C is hotter than 26.85°C
+
+Task 24 - Basic Inheritance
+Create an Animal hierarchy
+
+Animal (base)
+  ├── Dog
+  └── Cat
+
+Animal: name, age, speak() (prints "..."), sleep() (prints "{name} is sleeping"), __str__
+Dog overrides speak() → "Woof!" and adds fetch(item)
+Cat overrides speak() → "Meow!" and adds purr()
+Use super().__init__() in both subclasses
+d = Dog("Rex", 3)
+c = Cat("Bella", 5)
+
+d.speak()        # Rex says: Woof!
+d.fetch("ball")  # Rex fetched the ball!
+d.sleep()        # Rex is sleeping
+
+c.speak()        # Bella says: Meow!
+c.purr()         # Purrrrr...
+print(c)         # Cat: Bella | Age: 5
+
+
+
+
+Task 25 - Multi-Level Inheritance
+Build an Employee hierarchy
+
+Person (base)
+  └── Employee
+        ├── Manager
+        └── Intern
+
+Person: name, age, __str__
+Employee(Person): company, salary, work(), get_salary()
+Manager(Employee): department, team_size, work() overrides, give_raise(employee, amount)
+Intern(Employee): university, duration_months, work() overrides, salary always capped at 1000
+m = Manager("Sara", 35, "TechCorp", 5000, "Engineering", 8)
+i = Intern("Omar", 21, "TechCorp", 800, "MIT", 6)
+
+m.work()              # Sara is managing the Engineering team
+i.work()              # Omar is learning at TechCorp
+m.give_raise(i, 200)  # rejected - interns can't exceed 1000
+print(m)              # Manager: Sara | Age: 35 | Dept: Engineering
+
+Task 26 - Full Real World Hierarchy
+Build a Vehicle system
+
+Vehicle (base)
+  ├── Car
+  ├── Truck
+  └── ElectricCar(Car)
+
+Vehicle: brand, model, speed (starts 0), accelerate(amount), brake(amount), __str__
+Car(Vehicle): num_doors, fuel_level (starts 100), accelerate() overrides → consumes fuel, refuel(amount)
+Truck(Vehicle): cargo_capacity, current_cargo, load(amount), unload(amount), accelerate() overrides → slower if cargo heavy
+ElectricCar(Car): battery (starts 100), overrides accelerate() → uses battery, charge(amount), refuel() disabled
+c = Car("Toyota", "Corolla", 4)
+t = Truck("Ford", "F150", 1000)
+e = ElectricCar("Tesla", "Model 3", 4)
+
+c.accelerate(30)  # speed +30, fuel -10
+c.refuel(20)
+
+t.load(500)
+t.accelerate(30)  # slower because of cargo
+
+e.accelerate(50)  # speed +50, battery -15
+e.refuel(100)     # Electric cars don't use fuel
+e.charge(50)
+
+print(c)  # Car: Toyota Corolla | Speed: 30 | Fuel: 110
+print(t)  # Truck: Ford F150 | Speed: 30 | Cargo: 500/1000
+print(e)  # ElectricCar: Tesla Model 3 | Speed: 50 | Battery: 85
+
+Task 27 - Introduction to Abstract Classes
+Rewrite the Shape system using ABC
+
+Shape (abstract)
+  ├── Circle
+  ├── Rectangle
+  └── Triangle
+
+Shape is abstract — area() and perimeter() are abstract methods
+Each subclass must implement both — Python throws an error if they don't
+describe() stays in base class — uses area() and perimeter()
+Try to create a Shape() directly — it should fail
+# s = Shape()  → TypeError: Can't instantiate abstract class
+
+c = Circle(5)
+r = Rectangle(4, 6)
+t = Triangle(3, 4, 5)
+
+c.describe()  # Circle | Area: 78.54 | Perimeter: 31.42
+r.describe()  # Rectangle | Area: 24 | Perimeter: 20
+t.describe()  # Triangle | Area: 6.0 | Perimeter: 12
+
+Abstract classes force subclasses to implement certain methods — no more fake print("Not implemented")
+
+Task 28 - Abstract Classes in a Real System
+Build a PaymentMethod system using ABC
+
+PaymentMethod (abstract)
+  ├── CreditCard
+  ├── PayPal
+  └── CryptoPay
+
+PaymentMethod: owner, abstract methods process(amount) and validate()
+CreditCard: card_number, expiry — validate() checks card number is 16 digits
+PayPal: email — validate() checks email has @
+CryptoPay: wallet_address — validate() checks address is 34 characters
+PaymentProcessor class: pay(method, amount) → calls validate() first, then process()
+processor = PaymentProcessor()
+
+processor.pay(CreditCard("John", "1234567890123456", "12/26"), 99.99)
+processor.pay(CreditCard("John", "123", "12/26"), 99.99)      # invalid card
+processor.pay(PayPal("sara", "sara@email.com"), 49.99)
+processor.pay(CryptoPay("Ali", "abc"), 199.99)                # invalid wallet
+
+# Card validated ✓ | Processing $99.99 via Credit Card
+# Invalid credit card number
+# PayPal validated ✓ | Processing $49.99 via PayPal
+# Invalid wallet address
+
+Task 29 - Same Method, Different Behavior
+Create a Shape system
+
+Shape (base)
+  ├── Circle
+  ├── Rectangle
+  └── Triangle
+
+Shape: color, area() → prints "Not implemented", describe()
+Each subclass overrides area() with its own formula
+describe() stays in base class and calls self.area()
+shapes = [Circle(5), Rectangle(4, 6), Triangle(3, 8)]
+
+for shape in shapes:
+    shape.describe()
+
+# Circle     | Area: 78.54
+# Rectangle  | Area: 24
+# Triangle   | Area: 12.0
+
+Same describe() call — different area() result for each. That's polymorphism.
+
+Task 30 - Polymorphism in a Real System
+Build a Notification system
+
+Notification (base)
+  ├── EmailNotification
+  ├── SMSNotification
+  └── PushNotification
+
+Notification: recipient, message, send() → prints "Not implemented", log()
+Each subclass overrides send() differently
+NotificationService class takes a list of notifications and sends them all
+notifications = [
+    EmailNotification("Sara", "Welcome!", "sara@email.com"),
+    SMSNotification("Omar", "Your code is 1234", "+1234567890"),
+    PushNotification("Ali", "You have a new message", "device_abc"),
+]
+
+service = NotificationService(notifications)
+service.send_all()
+
+# [LOG] Sending to Sara
+# Sending EMAIL to sara@email.com: Welcome!
+# [LOG] Sending to Omar
+# Sending SMS to +1234567890: Your code is 1234
+# [LOG] Sending to Ali
+# Sending PUSH to device_abc: You have a new message
+
+Task 31 - Introduction to Composition
+Build a Computer using composition
+
+Computer
+  ├── has a CPU
+  ├── has a RAM
+  └── has a Storage
+
+CPU: brand, cores, speed_ghz, get_info()
+RAM: size_gb, type, get_info()
+Storage: size_gb, storage_type, get_info()
+Computer: brand, takes CPU, RAM, Storage in __init__, show_specs(), upgrade_ram(new_ram)
+cpu = CPU("Intel", 8, 3.6)
+ram = RAM(16, "DDR5")
+storage = Storage(512, "SSD")
+
+pc = Computer("Dell", cpu, ram, storage)
+pc.show_specs()
+# Dell Computer
+# CPU: Intel | 8 cores | 3.6GHz
+# RAM: 16GB DDR5
+# Storage: 512GB SSD
+
+pc.upgrade_ram(RAM(32, "DDR5"))
+pc.show_specs()  # now shows 32GB
+
+A Computer has a CPU - it is NOT a CPU. That's composition.
+
+Task 32 - Composition vs Inheritance
+Build an Order system
+
+Order
+  ├── has a Customer
+  ├── has many Products
+  └── has a Payment
+
+Customer: name, email, address
+Product: name, price, quantity
+Payment: method, status (starts "pending"), confirm(), reject()
+Order: takes a Customer and Payment, add_product(product), get_total(), place(), cancel()
+customer = Customer("Sara", "sara@email.com", "123 Main St")
+payment = Payment("Credit Card")
+
+order = Order(customer, payment)
+order.add_product(Product("Laptop", 999, 1))
+order.add_product(Product("Mouse", 29, 2))
+
+order.place()
+# Order placed for Sara
+# Items: Laptop x1, Mouse x2
+# Total: $1057
+# Payment: Credit Card - Confirmed ✓
+
+order.cancel()
+# Order cancelled - Payment rejected
+
+
+
+
+
+Task 33 - Introduction to Singleton
+Create a Sun class - only one can exist
+
+No attributes needed
+Implement Singleton using __new__
+Prove that all variables point to the same object
+sun1 = Sun()
+sun2 = Sun()
+sun3 = Sun()
+
+# Sun created!  ← prints only once
+
+print(sun1 is sun2)  # True
+print(sun2 is sun3)  # True
+
+print(id(sun1))      # 12345678
+print(id(sun2))      # 12345678 — same memory address
+print(id(sun3))      # 12345678 — same memory address
+
+3 variables, 1 object. That's Singleton.
+
+
+
+
+
+Task 34 - Singleton With Data
+Create a Counter class - one counter for the whole app
+
+Attribute: count (starts at 0)
+Methods: increment(), reset(), get()
+No matter where you create a Counter, it's always the same one
+c1 = Counter()
+c2 = Counter()
+
+c1.increment()
+c1.increment()
+c2.increment()
+
+print(c1.get())   # 3
+print(c2.get())   # 3 - same object, same count
+
+c1.reset()
+print(c2.get())   # 0 - reset affects everyone
+
+Changing c1 automatically changes c2 - because they are the same object.
+
+
+
+Task 35 - Introduction to Observer
+Build a basic event notification system
+
+EventManager (Subject)
+
+Attribute: _observers (empty list)
+Methods:
+subscribe(observer) → adds observer to list
+unsubscribe(observer) → removes observer from list
+notify(event) → calls update(event) on all observers
+Observer (base class)
+
+Abstract method: update(event)
+Logger and EmailAlert implement Observer
+
+Logger.update(event) → prints [LOG] Event received: {event}
+EmailAlert.update(event) → prints [EMAIL] Sending alert for: {event}
+manager = EventManager()
+
+logger = Logger()
+email = EmailAlert()
+
+manager.subscribe(logger)
+manager.subscribe(email)
+manager.notify("server_down")
+# [LOG] Event received: server_down
+# [EMAIL] Sending alert for: server_down
+
+manager.unsubscribe(email)
+manager.notify("disk_full")
+# [LOG] Event received: disk_full  ← email no longer notified
+
+One event, multiple reactions. That's Observer.
+
+Task 36 - Observer in a Real System
+Build a Stock Price tracker
+
+Stock (Subject)
+
+Attributes: symbol, price, _observers (list)
+Methods:
+subscribe(observer), unsubscribe(observer), notify()
+set_price(new_price) → updates price and calls notify()
+StockObserver (base)
+
+Abstract method: update(symbol, price)
+Three observers:
+
+PriceDisplay → prints [DISPLAY] {symbol}: ${price}
+PriceAlert(threshold) → prints [ALERT] {symbol} crossed ${threshold}! only if price exceeds threshold
+PriceLogger → keeps a list of all prices, show_history() prints them all
+stock = Stock("AAPL", 150)
+
+display = PriceDisplay()
+alert = PriceAlert(180)
+logger = PriceLogger()
+
+stock.subscribe(display)
+stock.subscribe(alert)
+stock.subscribe(logger)
+
+stock.set_price(160)
+# [DISPLAY] AAPL: $160
+# [LOGGER] Recorded AAPL: $160
+
+stock.set_price(185)
+# [DISPLAY] AAPL: $185
+# [ALERT] AAPL crossed $180!
+# [LOGGER] Recorded AAPL: $185
+
+stock.unsubscribe(display)
+stock.set_price(170)
+# [LOGGER] Recorded AAPL: $170  ← display no longer watching
+
+logger.show_history()
+# AAPL price history: [160, 185, 170]
+
+Each observer decides what to do with the update — the Stock doesn't care who's watching.
